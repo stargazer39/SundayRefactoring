@@ -1,3 +1,4 @@
+package com.employee;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,8 +13,6 @@ import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import org.xml.sax.SAXException;
-
-import com.employee.DatabaseConnection;
 
 public class EmployeeController extends WithProperties {
 

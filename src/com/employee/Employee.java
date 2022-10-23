@@ -1,3 +1,4 @@
+package com.employee;
 public class Employee {
 
   public String employeeId;
