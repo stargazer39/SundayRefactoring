@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 
 import com.employee.DatabaseConnection;
 
-public class EmployeeController extends c1 {
+public class EmployeeController extends WithProperties {
 
   private final ArrayList<Employee> el = new ArrayList<Employee>();
 
@@ -52,7 +52,9 @@ public class EmployeeController extends c1 {
         el.add(employee);
         System.out.println(employee.toString() + "\n");
       }
-    } catch (Exception e) {}
+    } catch (Exception e) {
+    	
+    }
   }
 
   public void a3() {
@@ -82,7 +84,7 @@ public class EmployeeController extends c1 {
     } catch (Exception e) {}
   }
 
-  public void eMPLOYEEGETBYID(String eid) {
+  public void employeeGetById(String eid) {
     Employee e = new Employee();
     try {
       ps = connection.prepareStatement(c2.Q("q4"));
@@ -98,7 +100,7 @@ public class EmployeeController extends c1 {
       }
       ArrayList<Employee> l = new ArrayList<Employee>();
       l.add(e);
-      eMPLOYEEoUTPUT(l);
+      displayEmployee(l);
     } catch (Exception ex) {}
   }
 
@@ -127,11 +129,13 @@ public class EmployeeController extends c1 {
         e.setDesignation(r.getString(6));
         l.add(e);
       }
-    } catch (Exception e) {}
-    eMPLOYEEoUTPUT(l);
+    } catch (Exception e) {
+    	
+    }
+    displayEmployee(l);
   }
 
-  public void eMPLOYEEoUTPUT(ArrayList<Employee> l) {
+  public void displayEmployee(ArrayList<Employee> l) {
     System.out.println(
       "Employee ID" +
       "\t\t" +

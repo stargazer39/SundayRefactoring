@@ -2,7 +2,7 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
-public class d {
+public class MainClass {
 
   /**
    * @param args
@@ -11,7 +11,7 @@ public class d {
 	System.out.println("Hello");
     EmployeeController a1 = new EmployeeController();
     try {
-      c3.rEQUESTtRANSFORM();
+      c3.requestTransform();
       a1.a2();
       a1.a3();
       a1.a4();

@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class c2 extends c1 {
+public class c2 extends WithProperties {
 
   public static String Q(String id) throws Exception {
     NodeList n;
@@ -20,6 +20,7 @@ public class c2 extends c1 {
         .newDocumentBuilder()
         .parse(new File("src/e/EmployeeQuery.xml"))
         .getElementsByTagName("query");
+    
     for (int x = 0; x < n.getLength(); x++) {
       e = (Element) n.item(x);
       if (e.getAttribute("id").equals(id)) break;

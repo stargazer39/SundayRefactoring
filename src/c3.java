@@ -20,18 +20,22 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class c3 extends c1 {
+import common.Constants;
+
+public class c3 extends WithProperties {
 
   private static final ArrayList<Map<String, String>> l = new ArrayList<Map<String, String>>();
 
   private static Map<String, String> m = null;
 
-  public static void rEQUESTtRANSFORM() throws Exception {
+  public static void requestTransform() throws Exception {
     Source x = new StreamSource(new File("src/e/EmployeeRequest.xml"));
     Source s = new StreamSource(new File("src/e/Employee-modified.xsl"));
-    Result o = new StreamResult(new File("src/e/EmployeeResponse.xml"));
+	Result o = new StreamResult(new File("src/e/EmployeeResponse.xml"));
     TransformerFactory.newInstance().newTransformer(s).transform(x, o);
   }
 
@@ -40,46 +44,49 @@ public class c3 extends c1 {
       .newInstance()
       .newDocumentBuilder()
       .parse("src/e/EmployeeResponse.xml");
+    
     XPath x = XPathFactory.newInstance().newXPath();
+    
     int n = Integer.parseInt(
       (String) x
         .compile("count(//Employees/Employee)")
         .evaluate(d, XPathConstants.STRING)
     );
+    
     for (int i = 1; i <= n; i++) {
       m = new HashMap<String, String>();
       m.put(
-        "XpathEmployeeIDKey",
+    		  Constants.XMLPathKeys.EMPLOYEE_ID,
         (String) x
           .compile("//Employees/Employee[" + i + "]/EmployeeID/text()")
           .evaluate(d, XPathConstants.STRING)
       );
       m.put(
-        "XpathEmployeeNameKey",
+        Constants.XMLPathKeys.EMPLOYEE_NAME,
         (String) x
           .compile("//Employees/Employee[" + i + "]/EmployeeFullName/text()")
           .evaluate(d, XPathConstants.STRING)
       );
       m.put(
-        "XpathEmployeeAddressKey",
+    		  Constants.XMLPathKeys.EMPLOYEE_ADDRESS,
         (String) x
           .compile("//Employees/Employee[" + i + "]/EmployeeFullAddress/text()")
           .evaluate(d, XPathConstants.STRING)
       );
       m.put(
-        "XpathFacultyNameKey",
+    		  Constants.XMLPathKeys.FACULTY_NAME,
         (String) x
           .compile("//Employees/Employee[" + i + "]/FacultyName/text()")
           .evaluate(d, XPathConstants.STRING)
       );
       m.put(
-        "XpathDepartmentKey",
+    		  Constants.XMLPathKeys.DEPARTMENT,
         (String) x
           .compile("//Employees/Employee[" + i + "]/Department/text()")
           .evaluate(d, XPathConstants.STRING)
       );
       m.put(
-        "XpathDesignationKey",
+    		  Constants.XMLPathKeys.DESIGNATION,
         (String) x
           .compile("//Employees/Employee[" + i + "]/Designation/text()")
           .evaluate(d, XPathConstants.STRING)
