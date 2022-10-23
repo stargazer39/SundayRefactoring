@@ -29,14 +29,14 @@ public class Constants {
 
   public static class Config {
 
-    public static final String CONFIG_FILE_PATH = "../config/config.properties";
+    public static final String CONFIG_FILE_PATH = "../../../config/config.properties";
     public static final String EMPLOYEE_QUERY_XML_PATH =
-      "src/e/EmployeeQuery.xml";
+      "src/config/EmployeeQuery.xml";
     public static final String EMPLOYEE_RESPONSE_XML =
-      "src/e/EmployeeResponse.xml";
-    public static final String EMPLOYEE_REQUEST = "src/e/EmployeeRequest.xml";
+      "src/config/EmployeeResponse.xml";
+    public static final String EMPLOYEE_REQUEST = "src/config/EmployeeRequest.xml";
     public static final String EMPLOYEE_MODIFIED =
-      "src/e/Employee-modified.xsl";
+      "src/config/Employee-modified.xsl";
   }
 
   public static class Props {

@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 
 public class EmployeeQueryUtil extends WithProperties {
 
-  public static String getEmployeeById(String id) throws Exception {
+  public static String queryById(String id) throws Exception {
     NodeList nodeList;
     Element element = null;
     nodeList =

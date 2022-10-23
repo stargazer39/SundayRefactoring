@@ -8,7 +8,7 @@ public abstract class AbstractService extends WithProperties {
 
   public abstract void displayEmployees();
 
-  public abstract void updateEmployees();
+  public abstract void createEmployeeTable();
 
   public abstract void saveEmployeesToDb();
 

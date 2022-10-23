@@ -23,7 +23,7 @@ public class MainClass {
     try {
       XMLQueryUtil.requestTransform();
       controller.displayEmployees();
-      controller.updateEmployees();
+      controller.createEmployeeTable();
       controller.saveEmployeesToDb();
       controller.displayEmployee();
 

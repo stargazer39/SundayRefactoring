@@ -83,11 +83,11 @@ public class EmployeeService extends AbstractService {
     }
   }
 
-  public void updateEmployees() {
+  public void createEmployeeTable() {
     try {
       s = connection.createStatement();
-      s.executeUpdate(EmployeeQueryUtil.getEmployeeById("q2"));
-      s.executeUpdate(EmployeeQueryUtil.getEmployeeById("q1"));
+      s.executeUpdate(EmployeeQueryUtil.queryById("q2"));
+      s.executeUpdate(EmployeeQueryUtil.queryById("q1"));
     } catch (SQLException e) {
       log.log(
         Level.SEVERE,
@@ -100,7 +100,7 @@ public class EmployeeService extends AbstractService {
 
   public void saveEmployeesToDb() {
     try {
-      ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q3"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.queryById("q3"));
       connection.setAutoCommit(false);
       for (int i = 0; i < employeeList.size(); i++) {
         Employee employee = employeeList.get(i);
@@ -145,7 +145,7 @@ public class EmployeeService extends AbstractService {
   public void employeeGetById(String eid) {
     Employee employee = new Employee();
     try {
-      ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q4"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.queryById("q4"));
       ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_ONE, eid);
       ResultSet resultSet = ps.executeQuery();
       while (resultSet.next()) {
@@ -182,7 +182,7 @@ public class EmployeeService extends AbstractService {
 
   public void deleteEmployee(String eid) {
     try {
-      ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q6"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.queryById("q6"));
       ps.setString(1, eid);
       ps.executeUpdate();
     } catch (SQLException e) {
@@ -198,7 +198,7 @@ public class EmployeeService extends AbstractService {
   public void displayEmployee() {
     ArrayList<Employee> employeeList = new ArrayList<Employee>();
     try {
-      ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q5"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.queryById("q5"));
       ResultSet resultSet = ps.executeQuery();
       while (resultSet.next()) {
         Employee employee = new Employee();
