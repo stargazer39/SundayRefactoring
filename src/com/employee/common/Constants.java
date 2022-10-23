@@ -1,4 +1,4 @@
-package common;
+package com.employee.common;
 
 public class Constants {
 	public static class XMLPathKeys {
