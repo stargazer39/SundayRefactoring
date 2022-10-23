@@ -35,7 +35,7 @@ public class c3 extends c1 {
     TransformerFactory.newInstance().newTransformer(s).transform(x, o);
   }
 
-  public static ArrayList<Map<String, String>> XMLXPATHS() throws Exception {
+  public static ArrayList<Map<String, String>> xmlPaths() throws Exception {
     Document d = DocumentBuilderFactory
       .newInstance()
       .newDocumentBuilder()

@@ -1,6 +1,8 @@
 package com.employee;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,11 +14,10 @@ public class DatabaseConnection {
   private static Properties props = new Properties();
 
   public static Connection getInstance() throws IOException, SQLException {
-    props.load(
-      DatabaseConnection.class.getResourceAsStream(
-          "../config/config.properties"
-        )
-    );
+	  InputStream inStream;
+	  System.out.println(DatabaseConnection.class.getResource("../"));
+	  inStream = DatabaseConnection.class.getResourceAsStream("../resources/config.properties");
+    props.load(inStream);
 
     if (conn == null) {
       conn =
