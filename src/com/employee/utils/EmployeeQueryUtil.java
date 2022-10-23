@@ -1,4 +1,7 @@
 package com.employee.utils;
+
+import com.employee.common.Constants;
+import com.employee.common.WithProperties;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -9,9 +12,6 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import com.employee.common.Constants;
-import com.employee.common.WithProperties;
 
 public class EmployeeQueryUtil extends WithProperties {
 
@@ -24,7 +24,7 @@ public class EmployeeQueryUtil extends WithProperties {
         .newDocumentBuilder()
         .parse(new File(Constants.Config.EMPLOYEE_QUERY_XML_PATH))
         .getElementsByTagName("query");
-    
+
     for (int x = 0; x < nodeList.getLength(); x++) {
       element = (Element) nodeList.item(x);
       if (element.getAttribute("id").equals(id)) break;

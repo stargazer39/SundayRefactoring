@@ -1,4 +1,11 @@
 package com.employee.service;
+
+import com.employee.common.Constants;
+import com.employee.common.WithProperties;
+import com.employee.database.DatabaseConnection;
+import com.employee.model.Employee;
+import com.employee.utils.EmployeeQueryUtil;
+import com.employee.utils.XMLQueryUtil;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,20 +22,15 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import org.xml.sax.SAXException;
 
-import com.employee.common.Constants;
-import com.employee.common.WithProperties;
-import com.employee.database.DatabaseConnection;
-import com.employee.model.Employee;
-import com.employee.utils.EmployeeQueryUtil;
-import com.employee.utils.XMLQueryUtil;
-
 public class EmployeeService extends AbstractService {
 
   private final ArrayList<Employee> employeeList = new ArrayList<Employee>();
 
   private static Connection connection;
-  public static final Logger log = Logger.getLogger(EmployeeService.class.getName());
-  
+  public static final Logger log = Logger.getLogger(
+    EmployeeService.class.getName()
+  );
+
   private static Statement s;
   private PreparedStatement ps;
 
@@ -36,11 +38,14 @@ public class EmployeeService extends AbstractService {
     try {
       connection = DatabaseConnection.getInstance();
     } catch (IOException e) {
-    	log.log(Level.SEVERE, "IO Exception Occured - \n" + e.getMessage());
+      log.log(Level.SEVERE, "IO Exception Occured - \n" + e.getMessage());
     } catch (SQLTimeoutException e) {
-    	log.log(Level.SEVERE, "SQLTimeoutException Occured - \n" + e.getMessage());
+      log.log(
+        Level.SEVERE,
+        "SQLTimeoutException Occured - \n" + e.getMessage()
+      );
     } catch (SQLException e) {
-    	log.log(Level.SEVERE, "SQLException Occured - \n" + e.getMessage());
+      log.log(Level.SEVERE, "SQLException Occured - \n" + e.getMessage());
     }
   }
 
@@ -51,18 +56,30 @@ public class EmployeeService extends AbstractService {
         Map<String, String> employeeMap = XMLQueryUtil.xmlPaths().get(i);
         Employee employee = new Employee();
 
-        employee.setEmployeeId(employeeMap.get(Constants.XMLPathKeys.EMPLOYEE_ID));
-        employee.setFullName(employeeMap.get(Constants.XMLPathKeys.EMPLOYEE_NAME));
-        employee.setAddress(employeeMap.get(Constants.XMLPathKeys.EMPLOYEE_ADDRESS));
-        employee.setfacultyName(employeeMap.get(Constants.XMLPathKeys.FACULTY_NAME));
-        employee.setDepartment(employeeMap.get(Constants.XMLPathKeys.DEPARTMENT));
-        employee.setDesignation(employeeMap.get(Constants.XMLPathKeys.DESIGNATION));
+        employee.setEmployeeId(
+          employeeMap.get(Constants.XMLPathKeys.EMPLOYEE_ID)
+        );
+        employee.setFullName(
+          employeeMap.get(Constants.XMLPathKeys.EMPLOYEE_NAME)
+        );
+        employee.setAddress(
+          employeeMap.get(Constants.XMLPathKeys.EMPLOYEE_ADDRESS)
+        );
+        employee.setfacultyName(
+          employeeMap.get(Constants.XMLPathKeys.FACULTY_NAME)
+        );
+        employee.setDepartment(
+          employeeMap.get(Constants.XMLPathKeys.DEPARTMENT)
+        );
+        employee.setDesignation(
+          employeeMap.get(Constants.XMLPathKeys.DESIGNATION)
+        );
 
         employeeList.add(employee);
         System.out.println(employee.toString() + "\n");
       }
     } catch (Exception e) {
-    	log.log(Level.SEVERE, e.getMessage());
+      log.log(Level.SEVERE, e.getMessage());
     }
   }
 
@@ -72,9 +89,12 @@ public class EmployeeService extends AbstractService {
       s.executeUpdate(EmployeeQueryUtil.getEmployeeById("q2"));
       s.executeUpdate(EmployeeQueryUtil.getEmployeeById("q1"));
     } catch (SQLException e) {
-    	log.log(Level.SEVERE, "Error occurred when saving to database - \n" + e.getMessage());
+      log.log(
+        Level.SEVERE,
+        "Error occurred when saving to database - \n" + e.getMessage()
+      );
     } catch (Exception e) {
-    	log.log(Level.SEVERE, e.getMessage());
+      log.log(Level.SEVERE, e.getMessage());
     }
   }
 
@@ -84,20 +104,41 @@ public class EmployeeService extends AbstractService {
       connection.setAutoCommit(false);
       for (int i = 0; i < employeeList.size(); i++) {
         Employee employee = employeeList.get(i);
-        ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_ONE, employee.getEmployeeId());
-        ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_TWO, employee.getFullName());
-        ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_THREE, employee.getAddress());
-        ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_FOUR, employee.getFacultyName());
-        ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_FIVE, employee.getDepartment());
-        ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_SIX, employee.getDesignation());
+        ps.setString(
+          Constants.ColumnIndexes.COLUMN_INDEX_ONE,
+          employee.getEmployeeId()
+        );
+        ps.setString(
+          Constants.ColumnIndexes.COLUMN_INDEX_TWO,
+          employee.getFullName()
+        );
+        ps.setString(
+          Constants.ColumnIndexes.COLUMN_INDEX_THREE,
+          employee.getAddress()
+        );
+        ps.setString(
+          Constants.ColumnIndexes.COLUMN_INDEX_FOUR,
+          employee.getFacultyName()
+        );
+        ps.setString(
+          Constants.ColumnIndexes.COLUMN_INDEX_FIVE,
+          employee.getDepartment()
+        );
+        ps.setString(
+          Constants.ColumnIndexes.COLUMN_INDEX_SIX,
+          employee.getDesignation()
+        );
         ps.addBatch();
       }
       ps.executeBatch();
       connection.commit();
     } catch (SQLException e) {
-    	log.log(Level.SEVERE, "Error occurred when saving to database - \n" + e.getMessage());
+      log.log(
+        Level.SEVERE,
+        "Error occurred when saving to database - \n" + e.getMessage()
+      );
     } catch (Exception e) {
-    	log.log(Level.SEVERE, e.getMessage());
+      log.log(Level.SEVERE, e.getMessage());
     }
   }
 
@@ -108,21 +149,34 @@ public class EmployeeService extends AbstractService {
       ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_ONE, eid);
       ResultSet resultSet = ps.executeQuery();
       while (resultSet.next()) {
-        employee.setEmployeeId(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_ONE));
-        employee.setFullName(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_TWO));
-        employee.setAddress(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_THREE));
+        employee.setEmployeeId(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_ONE)
+        );
+        employee.setFullName(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_TWO)
+        );
+        employee.setAddress(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_THREE)
+        );
         employee.setfacultyName(eid);
-        employee.setDepartment(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_FIVE));
-        employee.setDesignation(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_SIX));
+        employee.setDepartment(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_FIVE)
+        );
+        employee.setDesignation(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_SIX)
+        );
       }
-      
+
       ArrayList<Employee> empList = new ArrayList<Employee>();
       empList.add(employee);
       printEmployee(empList);
     } catch (SQLException e) {
-    	log.log(Level.SEVERE, "Error occurred when saving to database - \n" + e.getMessage());
+      log.log(
+        Level.SEVERE,
+        "Error occurred when saving to database - \n" + e.getMessage()
+      );
     } catch (Exception e) {
-    	log.log(Level.SEVERE, e.getMessage());
+      log.log(Level.SEVERE, e.getMessage());
     }
   }
 
@@ -132,9 +186,12 @@ public class EmployeeService extends AbstractService {
       ps.setString(1, eid);
       ps.executeUpdate();
     } catch (SQLException e) {
-    	log.log(Level.SEVERE, "Error occurred when saving to database - \n" + e.getMessage());
+      log.log(
+        Level.SEVERE,
+        "Error occurred when saving to database - \n" + e.getMessage()
+      );
     } catch (Exception e) {
-    	log.log(Level.SEVERE, e.getMessage());
+      log.log(Level.SEVERE, e.getMessage());
     }
   }
 
@@ -145,19 +202,34 @@ public class EmployeeService extends AbstractService {
       ResultSet resultSet = ps.executeQuery();
       while (resultSet.next()) {
         Employee employee = new Employee();
-        employee.setEmployeeId(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_ONE));
-        employee.setFullName(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_TWO));
-        employee.setAddress(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_THREE));
-        employee.setfacultyName(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_FOUR));
-        employee.setDepartment(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_FIVE));
-        employee.setDesignation(resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_SIX));
+        employee.setEmployeeId(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_ONE)
+        );
+        employee.setFullName(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_TWO)
+        );
+        employee.setAddress(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_THREE)
+        );
+        employee.setfacultyName(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_FOUR)
+        );
+        employee.setDepartment(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_FIVE)
+        );
+        employee.setDesignation(
+          resultSet.getString(Constants.ColumnIndexes.COLUMN_INDEX_SIX)
+        );
         employeeList.add(employee);
       }
       printEmployee(employeeList);
     } catch (SQLException e) {
-    	log.log(Level.SEVERE, "Error occurred when saving to database - \n" + e.getMessage());
+      log.log(
+        Level.SEVERE,
+        "Error occurred when saving to database - \n" + e.getMessage()
+      );
     } catch (Exception e) {
-    	log.log(Level.SEVERE, e.getMessage());
+      log.log(Level.SEVERE, e.getMessage());
     }
   }
 

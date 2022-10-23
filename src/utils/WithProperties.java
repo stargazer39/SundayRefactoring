@@ -1,4 +1,5 @@
 package utils;
+
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -10,7 +11,9 @@ public class WithProperties {
 
   static {
     try {
-      p.load(WithProperties.class.getResourceAsStream("../config/config.properties"));
+      p.load(
+        WithProperties.class.getResourceAsStream("../config/config.properties")
+      );
     } catch (Exception e) {}
   }
 }
