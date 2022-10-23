@@ -1,4 +1,4 @@
-package com.employee;
+package com.employee.utils;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -26,6 +26,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.employee.common.Constants;
+import com.employee.common.WithProperties;
 
 public class XMLQueryUtil extends WithProperties {
 
@@ -44,7 +45,7 @@ public class XMLQueryUtil extends WithProperties {
     Document d = DocumentBuilderFactory
       .newInstance()
       .newDocumentBuilder()
-      .parse("src/e/EmployeeResponse.xml");
+      .parse(Constants.Config.EMPLOYEE_RESPONSE_XML);
     
     XPath x = XPathFactory.newInstance().newXPath();
     

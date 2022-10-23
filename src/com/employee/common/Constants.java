@@ -22,4 +22,25 @@ public class Constants {
 		public final static String DEPARTMENT = "Department";
 		public final static String DESIGNATION = "Designation";
 	}
+	
+	public static class Config {
+		public final static String CONFIG_FILE_PATH = "../config/config.properties";
+		public final static String EMPLOYEE_QUERY_XML_PATH = "src/e/EmployeeQuery.xml";
+		public final static String EMPLOYEE_RESPONSE_XML = "src/e/EmployeeResponse.xml";
+	}
+	
+	public static class Props {
+		public final static String DB_URL = "url";
+		public final static String DB_USERNAME = "username";
+		public final static String DB_PASSWORD = "password";
+	}
+	
+	public static class ColumnIndexes {
+		public final static int COLUMN_INDEX_ONE = 1;
+		public final static int COLUMN_INDEX_TWO = 2;
+		public final static int COLUMN_INDEX_THREE = 3;
+		public final static int COLUMN_INDEX_FOUR = 4;
+		public final static int COLUMN_INDEX_FIVE = 5;
+		public final static int COLUMN_INDEX_SIX = 6;
+	}
 }

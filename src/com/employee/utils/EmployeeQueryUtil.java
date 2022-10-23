@@ -1,4 +1,4 @@
-package com.employee;
+package com.employee.utils;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,6 +10,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.employee.common.Constants;
+import com.employee.common.WithProperties;
+
 public class EmployeeQueryUtil extends WithProperties {
 
   public static String getEmployeeById(String id) throws Exception {
@@ -19,7 +22,7 @@ public class EmployeeQueryUtil extends WithProperties {
       DocumentBuilderFactory
         .newInstance()
         .newDocumentBuilder()
-        .parse(new File("src/e/EmployeeQuery.xml"))
+        .parse(new File(Constants.Config.EMPLOYEE_QUERY_XML_PATH))
         .getElementsByTagName("query");
     
     for (int x = 0; x < nodeList.getLength(); x++) {

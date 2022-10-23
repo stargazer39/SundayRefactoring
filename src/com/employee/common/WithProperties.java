@@ -1,8 +1,10 @@
-package com.employee;
+package com.employee.common;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.employee.utils.EmployeeQueryUtil;
 
 public class WithProperties {
 
@@ -10,7 +12,7 @@ public class WithProperties {
 
   static {
     try {
-      p.load(EmployeeQueryUtil.class.getResourceAsStream("../config/config.properties"));
+      p.load(EmployeeQueryUtil.class.getResourceAsStream(Constants.Config.CONFIG_FILE_PATH));
     } catch (Exception e) {}
   }
 }
