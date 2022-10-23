@@ -12,9 +12,9 @@ public class MainClass {
     EmployeeController a1 = new EmployeeController();
     try {
       c3.requestTransform();
-      a1.a2();
-      a1.a3();
-      a1.a4();
+      a1.displayEmployees();
+      a1.updateEmployees();
+      a1.saveEmployeesToDb();
       //			employeeService.eMPLOYEEGETBYID("EMP10004");
       //			employeeService.EMPLOYEEDELETE("EMP10001");
       a1.a5();

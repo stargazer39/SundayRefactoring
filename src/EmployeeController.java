@@ -35,19 +35,19 @@ public class EmployeeController extends WithProperties {
     }
   }
 
-  public void a2() {
+  public void displayEmployees() {
     try {
       int s = c3.xmlPaths().size();
       for (int i = 0; i < s; i++) {
-        Map<String, String> l = c3.xmlPaths().get(i);
+        Map<String, String> employeeMap = c3.xmlPaths().get(i);
         Employee employee = new Employee();
 
-        employee.setEmployeeId(l.get("XpathEmployeeIDKey"));
+        employee.setEmployeeId(employeeMap.get("XpathEmployeeIDKey"));
         employee.setFullName(null);
-        employee.setAddress(l.get("XpathEmployeeAddressKey"));
-        employee.setfacultyName(l.get("XpathFacultyNameKey"));
-        employee.setDepartment(l.get("XpathDepartmentKey"));
-        employee.setDesignation(l.get("XpathDesignationKey"));
+        employee.setAddress(employeeMap.get("XpathEmployeeAddressKey"));
+        employee.setfacultyName(employeeMap.get("XpathFacultyNameKey"));
+        employee.setDepartment(employeeMap.get("XpathDepartmentKey"));
+        employee.setDesignation(employeeMap.get("XpathDesignationKey"));
 
         el.add(employee);
         System.out.println(employee.toString() + "\n");
@@ -57,17 +57,17 @@ public class EmployeeController extends WithProperties {
     }
   }
 
-  public void a3() {
+  public void updateEmployees() {
     try {
       s = connection.createStatement();
-      s.executeUpdate(c2.Q("q2"));
-      s.executeUpdate(c2.Q("q1"));
+      s.executeUpdate(EmployeeQueryUtil.getEmployeeById("q2"));
+      s.executeUpdate(EmployeeQueryUtil.getEmployeeById("q1"));
     } catch (Exception e) {}
   }
 
-  public void a4() {
+  public void saveEmployeesToDb() {
     try {
-      ps = connection.prepareStatement(c2.Q("q3"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q3"));
       connection.setAutoCommit(false);
       for (int i = 0; i < el.size(); i++) {
         Employee e = el.get(i);
@@ -87,7 +87,7 @@ public class EmployeeController extends WithProperties {
   public void employeeGetById(String eid) {
     Employee e = new Employee();
     try {
-      ps = connection.prepareStatement(c2.Q("q4"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q4"));
       ps.setString(1, eid);
       ResultSet R = ps.executeQuery();
       while (R.next()) {
@@ -104,9 +104,9 @@ public class EmployeeController extends WithProperties {
     } catch (Exception ex) {}
   }
 
-  public void EMPLOYEEDELETE(String eid) {
+  public void deleteEmployee(String eid) {
     try {
-      ps = connection.prepareStatement(c2.Q("q6"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q6"));
       ps.setString(1, eid);
       ps.executeUpdate();
     } catch (Exception e) {
@@ -117,7 +117,7 @@ public class EmployeeController extends WithProperties {
   public void a5() {
     ArrayList<Employee> l = new ArrayList<Employee>();
     try {
-      ps = connection.prepareStatement(c2.Q("q5"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q5"));
       ResultSet r = ps.executeQuery();
       while (r.next()) {
         Employee e = new Employee();

@@ -9,7 +9,7 @@ public class WithProperties {
 
   static {
     try {
-      p.load(c2.class.getResourceAsStream("../config/config.properties"));
+      p.load(EmployeeQueryUtil.class.getResourceAsStream("../config/config.properties"));
     } catch (Exception e) {}
   }
 }
