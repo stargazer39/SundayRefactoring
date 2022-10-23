@@ -22,6 +22,7 @@ public class DatabaseConnection extends WithProperties {
   
   private DatabaseConnection() {}
   public static Connection getInstance() throws IOException, SQLException {
+	// If there's no already existing connection, connect first.
     if (conn == null) {
       conn =
         DriverManager.getConnection(
@@ -36,13 +37,13 @@ public class DatabaseConnection extends WithProperties {
   
   public static void closeConnection() {
 	  if(conn == null) {
-		  log.log(Level.WARNING, "Connection does not exists.");
+		  log.info("Connection does not exists.");
 		  return;
 	  }
 	  try {
 		  conn.close();
 	  }catch(Exception e) {
-		  log.log(Level.SEVERE, e.getMessage());
+		  log.warning( e.getMessage());
 	  }
   }
 }

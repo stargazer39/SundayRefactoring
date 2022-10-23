@@ -9,6 +9,7 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
+import com.employee.database.DatabaseConnection;
 import com.employee.service.EmployeeService;
 import com.employee.utils.XMLQueryUtil;
 
@@ -27,6 +28,7 @@ public class MainClass {
       controller.saveEmployeesToDb();
       controller.displayEmployee();
       
+      DatabaseConnection.closeConnection();
     } catch (SQLException e) {
     	log.log(Level.SEVERE, "Error occurred when saving to database - \n" + e.getMessage());
     } catch (Exception e) {

@@ -35,9 +35,9 @@ public class XMLQueryUtil extends WithProperties {
   private static Map<String, String> employeeMap = null;
 
   public static void requestTransform() throws Exception {
-    Source x = new StreamSource(new File("src/e/EmployeeRequest.xml"));
-    Source s = new StreamSource(new File("src/e/Employee-modified.xsl"));
-	Result o = new StreamResult(new File("src/e/EmployeeResponse.xml"));
+    Source x = new StreamSource(new File(Constants.Config.EMPLOYEE_REQUEST));
+    Source s = new StreamSource(new File(Constants.Config.EMPLOYEE_MODIFIED));
+	Result o = new StreamResult(new File(Constants.Config.EMPLOYEE_RESPONSE_XML));
     TransformerFactory.newInstance().newTransformer(s).transform(x, o);
   }
 

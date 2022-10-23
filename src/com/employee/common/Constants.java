@@ -27,6 +27,8 @@ public class Constants {
 		public final static String CONFIG_FILE_PATH = "../config/config.properties";
 		public final static String EMPLOYEE_QUERY_XML_PATH = "src/e/EmployeeQuery.xml";
 		public final static String EMPLOYEE_RESPONSE_XML = "src/e/EmployeeResponse.xml";
+		public final static String EMPLOYEE_REQUEST = "src/e/EmployeeRequest.xml";
+		public final static String EMPLOYEE_MODIFIED = "src/e/Employee-modified.xsl";
 	}
 	
 	public static class Props {
