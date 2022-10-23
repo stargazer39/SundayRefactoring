@@ -100,7 +100,7 @@ public class EmployeeController extends WithProperties {
       }
       ArrayList<Employee> l = new ArrayList<Employee>();
       l.add(e);
-      displayEmployee(l);
+      printEmployee(l);
     } catch (Exception ex) {}
   }
 
@@ -114,7 +114,7 @@ public class EmployeeController extends WithProperties {
     }
   }
 
-  public void a5() {
+  public void displayEmployee() {
     ArrayList<Employee> l = new ArrayList<Employee>();
     try {
       ps = connection.prepareStatement(EmployeeQueryUtil.getEmployeeById("q5"));
@@ -132,10 +132,10 @@ public class EmployeeController extends WithProperties {
     } catch (Exception e) {
     	
     }
-    displayEmployee(l);
+    printEmployee(l);
   }
 
-  public void displayEmployee(ArrayList<Employee> l) {
+  public void printEmployee(ArrayList<Employee> l) {
     System.out.println(
       "Employee ID" +
       "\t\t" +

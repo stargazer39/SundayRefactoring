@@ -13,7 +13,8 @@ import utils.WithProperties;
 public class DatabaseConnection extends WithProperties {
 
   private static Connection conn;
-
+  
+  private DatabaseConnection() {}
   public static Connection getInstance() throws IOException, SQLException {
     if (conn == null) {
       conn =

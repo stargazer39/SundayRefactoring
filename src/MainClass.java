@@ -15,9 +15,10 @@ public class MainClass {
       a1.displayEmployees();
       a1.updateEmployees();
       a1.saveEmployeesToDb();
-      //			employeeService.eMPLOYEEGETBYID("EMP10004");
-      //			employeeService.EMPLOYEEDELETE("EMP10001");
-      a1.a5();
-    } catch (Exception e) {}
+      a1.displayEmployee();
+      
+    } catch (Exception e) {
+    	
+    }
   }
 }
