@@ -9,4 +9,17 @@ public class Constants {
 		public final static String DEPARTMENT = "XpathDepartmentKey";
 		public final static String DESIGNATION = "XpathDesignationKey";
 	}
+	
+	public static class XMLQueryCommon {
+		public final static String EMPLOYEE_QUERY = "//Employees/Employee";
+	}
+	
+	public static class XMLEmployeeTagNames {
+		public final static String EMPLOYEE_ID = "EmployeeID";
+		public final static String EMPLOYEE_NAME = "EmployeeFullName";
+		public final static String EMPLOYEE_ADDRESS = "EmployeeFullAddress";
+		public final static String FACULTY_NAME = "FacultyName";
+		public final static String DEPARTMENT = "Department";
+		public final static String DESIGNATION = "Designation";
+	}
 }

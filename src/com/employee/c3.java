@@ -31,7 +31,7 @@ public class c3 extends WithProperties {
 
   private static final ArrayList<Map<String, String>> l = new ArrayList<Map<String, String>>();
 
-  private static Map<String, String> m = null;
+  private static Map<String, String> employeeMap = null;
 
   public static void requestTransform() throws Exception {
     Source x = new StreamSource(new File("src/e/EmployeeRequest.xml"));
@@ -50,49 +50,49 @@ public class c3 extends WithProperties {
     
     int n = Integer.parseInt(
       (String) x
-        .compile("count(//Employees/Employee)")
+        .compile("count(" + Constants.XMLQueryCommon.EMPLOYEE_QUERY  +")")
         .evaluate(d, XPathConstants.STRING)
     );
     
     for (int i = 1; i <= n; i++) {
-        m = new HashMap<String, String>();
-        m.put(
+        employeeMap = new HashMap<String, String>();
+        employeeMap.put(
       		  Constants.XMLPathKeys.EMPLOYEE_ID,
           (String) x
-            .compile("//Employees/Employee[" + i + "]/EmployeeID/text()")
+            .compile(Constants.XMLQueryCommon.EMPLOYEE_QUERY+"[" + i + "]/" + Constants.XMLEmployeeTagNames.EMPLOYEE_ID + "/text()")
             .evaluate(d, XPathConstants.STRING)
         );
-        m.put(
+        employeeMap.put(
           Constants.XMLPathKeys.EMPLOYEE_NAME,
           (String) x
-            .compile("//Employees/Employee[" + i + "]/EmployeeFullName/text()")
+            .compile(Constants.XMLQueryCommon.EMPLOYEE_QUERY +"[" + i + "]/"+ Constants.XMLEmployeeTagNames.EMPLOYEE_NAME +"/text()")
             .evaluate(d, XPathConstants.STRING)
         );
-        m.put(
+        employeeMap.put(
       		  Constants.XMLPathKeys.EMPLOYEE_ADDRESS,
           (String) x
-            .compile("//Employees/Employee[" + i + "]/EmployeeFullAddress/text()")
+            .compile(Constants.XMLQueryCommon.EMPLOYEE_QUERY +"[" + i + "]/" + Constants.XMLEmployeeTagNames.EMPLOYEE_ADDRESS + "/text()")
             .evaluate(d, XPathConstants.STRING)
         );
-        m.put(
+        employeeMap.put(
       		  Constants.XMLPathKeys.FACULTY_NAME,
           (String) x
-            .compile("//Employees/Employee[" + i + "]/FacultyName/text()")
+            .compile(Constants.XMLQueryCommon.EMPLOYEE_QUERY +"[" + i + "]/" + Constants.XMLEmployeeTagNames.FACULTY_NAME + "/text()")
             .evaluate(d, XPathConstants.STRING)
         );
-        m.put(
+        employeeMap.put(
       		  Constants.XMLPathKeys.DEPARTMENT,
           (String) x
-            .compile("//Employees/Employee[" + i + "]/Department/text()")
+            .compile(Constants.XMLQueryCommon.EMPLOYEE_QUERY +"[" + i + "]/" + Constants.XMLEmployeeTagNames.DEPARTMENT + "/text()")
             .evaluate(d, XPathConstants.STRING)
         );
-        m.put(
+        employeeMap.put(
       		  Constants.XMLPathKeys.DESIGNATION,
           (String) x
-            .compile("//Employees/Employee[" + i + "]/Designation/text()")
+            .compile(Constants.XMLQueryCommon.EMPLOYEE_QUERY +"[" + i + "]/" + Constants.XMLEmployeeTagNames.DESIGNATION + "/text()")
             .evaluate(d, XPathConstants.STRING)
         );
-        l.add(m);
+        l.add(employeeMap);
       }
       return l;
     }
