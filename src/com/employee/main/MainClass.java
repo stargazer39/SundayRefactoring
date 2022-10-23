@@ -15,9 +15,10 @@ public class MainClass {
   public static final Logger log = Logger.getLogger(MainClass.class.getName());
 
   /**
-   * @param args
+   * This is the main entry for the app
    */
   public static void main(String[] args) {
+	// Instantiate the EmployeeService
     EmployeeService controller = new EmployeeService();
 
     try {
@@ -26,7 +27,8 @@ public class MainClass {
       controller.createEmployeeTable();
       controller.saveEmployeesToDb();
       controller.displayEmployee();
-
+      
+      // Close the database connection since there's no use after this.
       DatabaseConnection.closeConnection();
     } catch (SQLException e) {
       log.log(

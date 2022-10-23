@@ -1,5 +1,10 @@
 package com.employee.common;
 
+/**
+ * 
+ * Declares constants
+ *
+ */
 public class Constants {
 
   public static class XMLPathKeys {
@@ -44,6 +49,7 @@ public class Constants {
     public static final String DB_URL = "url";
     public static final String DB_USERNAME = "username";
     public static final String DB_PASSWORD = "password";
+    public static final String DB_DRIVER = "driverName";
   }
 
   public static class ColumnIndexes {
@@ -54,5 +60,14 @@ public class Constants {
     public static final int COLUMN_INDEX_FOUR = 4;
     public static final int COLUMN_INDEX_FIVE = 5;
     public static final int COLUMN_INDEX_SIX = 6;
+  }
+  
+  public static class QueryID {
+	  public static final String SELECT_ALL_EMPLOYEES = "q5";
+	  public static final String DELETE_EMPLOYEE_BY_ID = "q6";
+	  public static final String SELECT_EMPLOYEE_BY_ID = "q4";
+	  public static final String CREATE_TABLE_EMPLOYEE = "q1";
+	  public static final String DROP_TABLE_EMPLOYEE = "q2";
+	  public static final String INSERT_INTO_EMPLOYEES = "q3";
   }
 }

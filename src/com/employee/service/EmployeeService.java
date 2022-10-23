@@ -22,6 +22,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import org.xml.sax.SAXException;
 
+/**
+ * 
+ * Declares all the employee service methods CRUD operations and database operations
+ *
+ */
 public class EmployeeService extends AbstractService {
 
   private final ArrayList<Employee> employeeList = new ArrayList<Employee>();
@@ -46,8 +51,10 @@ public class EmployeeService extends AbstractService {
       );
     } catch (SQLException e) {
       log.log(Level.SEVERE, "SQLException Occured - \n" + e.getMessage());
+    } catch (ClassNotFoundException e) {
+    	log.log(Level.SEVERE, "Database driver class not found. check the .properties - \n" + e.getMessage());
     }
-  }
+  } 
 
   public void displayEmployees() {
     try {
@@ -86,8 +93,8 @@ public class EmployeeService extends AbstractService {
   public void createEmployeeTable() {
     try {
       s = connection.createStatement();
-      s.executeUpdate(EmployeeQueryUtil.queryById("q2"));
-      s.executeUpdate(EmployeeQueryUtil.queryById("q1"));
+      s.executeUpdate(EmployeeQueryUtil.queryById(Constants.QueryID.DROP_TABLE_EMPLOYEE));
+      s.executeUpdate(EmployeeQueryUtil.queryById(Constants.QueryID.CREATE_TABLE_EMPLOYEE));
     } catch (SQLException e) {
       log.log(
         Level.SEVERE,
@@ -100,7 +107,7 @@ public class EmployeeService extends AbstractService {
 
   public void saveEmployeesToDb() {
     try {
-      ps = connection.prepareStatement(EmployeeQueryUtil.queryById("q3"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.queryById(Constants.QueryID.INSERT_INTO_EMPLOYEES));
       connection.setAutoCommit(false);
       for (int i = 0; i < employeeList.size(); i++) {
         Employee employee = employeeList.get(i);
@@ -145,7 +152,7 @@ public class EmployeeService extends AbstractService {
   public void employeeGetById(String eid) {
     Employee employee = new Employee();
     try {
-      ps = connection.prepareStatement(EmployeeQueryUtil.queryById("q4"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.queryById(Constants.QueryID.SELECT_EMPLOYEE_BY_ID));
       ps.setString(Constants.ColumnIndexes.COLUMN_INDEX_ONE, eid);
       ResultSet resultSet = ps.executeQuery();
       while (resultSet.next()) {
@@ -182,7 +189,7 @@ public class EmployeeService extends AbstractService {
 
   public void deleteEmployee(String eid) {
     try {
-      ps = connection.prepareStatement(EmployeeQueryUtil.queryById("q6"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.queryById(Constants.QueryID.DELETE_EMPLOYEE_BY_ID));
       ps.setString(1, eid);
       ps.executeUpdate();
     } catch (SQLException e) {
@@ -198,7 +205,7 @@ public class EmployeeService extends AbstractService {
   public void displayEmployee() {
     ArrayList<Employee> employeeList = new ArrayList<Employee>();
     try {
-      ps = connection.prepareStatement(EmployeeQueryUtil.queryById("q5"));
+      ps = connection.prepareStatement(EmployeeQueryUtil.queryById(Constants.QueryID.SELECT_ALL_EMPLOYEES));
       ResultSet resultSet = ps.executeQuery();
       while (resultSet.next()) {
         Employee employee = new Employee();

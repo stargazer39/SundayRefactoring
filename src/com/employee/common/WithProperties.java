@@ -16,7 +16,6 @@ public class WithProperties {
 
   static {
     try {
-    System.out.println(EmployeeQueryUtil.class.getResource("../../../config"));
       p.load(
         EmployeeQueryUtil.class.getResourceAsStream(
             Constants.Config.CONFIG_FILE_PATH

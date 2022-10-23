@@ -28,12 +28,21 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * 
+ * Utilities for getting the elements from the XML
+ *
+ */
 public class XMLQueryUtil extends WithProperties {
 
   private static final ArrayList<Map<String, String>> l = new ArrayList<Map<String, String>>();
 
   private static Map<String, String> employeeMap = null;
-
+  
+  /**
+   * Transforms the XML data according to the schema
+   * @throws Exception
+   */
   public static void requestTransform() throws Exception {
     Source x = new StreamSource(new File(Constants.Config.EMPLOYEE_REQUEST));
     Source s = new StreamSource(new File(Constants.Config.EMPLOYEE_MODIFIED));
@@ -42,7 +51,13 @@ public class XMLQueryUtil extends WithProperties {
     );
     TransformerFactory.newInstance().newTransformer(s).transform(x, o);
   }
-
+  
+  /** 
+   * Used to fetch all the employees in a map
+   * 
+   * @return A employees list in a form of Map of Employee objects
+   * @throws Exception
+   */
   public static ArrayList<Map<String, String>> xmlPaths() throws Exception {
     Document d = DocumentBuilderFactory
       .newInstance()

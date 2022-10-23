@@ -1,5 +1,10 @@
 package com.employee.model;
 
+/**
+ * 
+ * Declares the Employee model class
+ *
+ */
 public class Employee {
 
   public String employeeId;
