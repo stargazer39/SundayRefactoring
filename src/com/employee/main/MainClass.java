@@ -15,13 +15,13 @@ public class MainClass {
    */
   public static void main(String[] args) {
 	System.out.println("Hello");
-    EmployeeController a1 = new EmployeeController();
+    EmployeeController controller = new EmployeeController();
     try {
       XMLQueryUtil.requestTransform();
-      a1.displayEmployees();
-      a1.updateEmployees();
-      a1.saveEmployeesToDb();
-      a1.displayEmployee();
+      controller.displayEmployees();
+      controller.updateEmployees();
+      controller.saveEmployeesToDb();
+      controller.displayEmployee();
       
     } catch (Exception e) {
     	
