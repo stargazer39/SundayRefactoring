@@ -6,7 +6,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import com.employee.EmployeeController;
-import com.employee.c3;
+import com.employee.XMLQueryUtil;
 
 public class MainClass {
 
@@ -17,7 +17,7 @@ public class MainClass {
 	System.out.println("Hello");
     EmployeeController a1 = new EmployeeController();
     try {
-      c3.requestTransform();
+      XMLQueryUtil.requestTransform();
       a1.displayEmployees();
       a1.updateEmployees();
       a1.saveEmployeesToDb();

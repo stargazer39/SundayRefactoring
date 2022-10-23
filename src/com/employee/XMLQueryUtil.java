@@ -27,7 +27,7 @@ import org.xml.sax.SAXException;
 
 import com.employee.common.Constants;
 
-public class c3 extends WithProperties {
+public class XMLQueryUtil extends WithProperties {
 
   private static final ArrayList<Map<String, String>> l = new ArrayList<Map<String, String>>();
 

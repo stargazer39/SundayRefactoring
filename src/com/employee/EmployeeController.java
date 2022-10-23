@@ -36,9 +36,9 @@ public class EmployeeController extends WithProperties {
 
   public void displayEmployees() {
     try {
-      int s = c3.xmlPaths().size();
+      int s = XMLQueryUtil.xmlPaths().size();
       for (int i = 0; i < s; i++) {
-        Map<String, String> employeeMap = c3.xmlPaths().get(i);
+        Map<String, String> employeeMap = XMLQueryUtil.xmlPaths().get(i);
         Employee employee = new Employee();
 
         employee.setEmployeeId(employeeMap.get("XpathEmployeeIDKey"));
